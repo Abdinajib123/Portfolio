@@ -8,7 +8,7 @@ It provides an overview of my background, displays my projects, and offers a way
 ## Features
 - About Me: An overview of my background, intrests, and experiences.
 - Projects: A collection of my notable projects .
-- Skills: A list of my technical skills and proficiencies.
+- Skills: A list of my technical skills and proficiencies. 
 - Contact: A form to send me messages or inquiries.
 
 ## Installation
