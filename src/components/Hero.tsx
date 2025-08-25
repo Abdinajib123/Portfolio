@@ -1,6 +1,5 @@
-import React from 'react';
 import { Button } from './ui/button';
-import { Download, Mail, Github, Linkedin, Facebook, Instagram } from 'lucide-react';
+import { Download, Mail, Linkedin, Facebook, Instagram } from 'lucide-react';
 
 const Hero = () => {
   return (

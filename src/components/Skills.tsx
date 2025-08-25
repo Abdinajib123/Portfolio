@@ -1,4 +1,3 @@
-import React from 'react';
 import { Code, Database, Palette, Server, Smartphone, Globe } from 'lucide-react';
 
 const Skills = () => {
@@ -88,13 +87,6 @@ const Skills = () => {
     if (level >= 80) return 'bg-blue-500';
     if (level >= 70) return 'bg-yellow-500';
     return 'bg-gray-500';
-  };
-
-  const getLevelText = (level: number) => {
-    if (level >= 90) return 'Expert';
-    if (level >= 80) return 'Advanced';
-    if (level >= 70) return 'Intermediate';
-    return 'Beginner';
   };
 
   return (

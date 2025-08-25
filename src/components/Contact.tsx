@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { Button } from './ui/button';
 import { Mail, Phone, MapPin, Send, CheckCircle, Github, Linkedin, Facebook, Instagram } from 'lucide-react';
 
@@ -33,7 +34,7 @@ const Contact = () => {
     },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -41,7 +42,7 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
