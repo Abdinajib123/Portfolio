@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Github, Linkedin, Facebook, Instagram } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,19 +16,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com',
+      value: 'cabdicabdulaahi8899@gmail.com',
+      link: 'mailto:cabdicabdulaahi8899@gmail.com',
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      value: '+252 612 112 932',
+      link: 'tel:+252612112932',
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Your City, Country',
+      value: 'Mogadishu, Somalia',
       link: '#',
     },
   ];
@@ -115,18 +115,27 @@ const Contact = () => {
               <h4 className="text-lg font-semibold text-foreground mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/Abdinajib123" target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4 mr-2" />
                     GitHub
                   </a>
                 </Button>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/abdinajib-abdullahi-muse-8b8026357" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-4 w-4 mr-2" />
                     LinkedIn
                   </a>
                 </Button>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-                    Twitter
+                  <a href="https://www.facebook.com/najiib.cadeh" target="_blank" rel="noopener noreferrer">
+                    <Facebook className="h-4 w-4 mr-2" />
+                    Facebook
+                  </a>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <a href="https://www.instagram.com/cabdicabdulaahi8899" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="h-4 w-4 mr-2" />
+                    Instagram
                   </a>
                 </Button>
               </div>

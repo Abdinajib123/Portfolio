@@ -37,7 +37,7 @@ const Skills = () => {
         { name: 'MongoDB', level: 85 },
         { name: 'PostgreSQL', level: 80 },
         { name: 'Firebase', level: 85 },
-        { name: 'AWS', level: 70 },
+        { name: 'SQL', level: 70 },
         { name: 'Docker', level: 75 },
         { name: 'Redis', level: 70 },
       ],
@@ -98,7 +98,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-accent/5">
+    <section id="skills" className="min-h-screen py-20 bg-accent/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -109,34 +109,28 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {skillCategories.map((category) => (
-            <div key={category.id} className="bg-background rounded-2xl p-8 border border-border shadow-sm">
-              <div className="flex items-center mb-6">
-                <div className="p-3 bg-primary/10 rounded-lg mr-4">
-                  <category.icon className="h-6 w-6 text-primary" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillCategories.slice(0, 4).map((category) => (
+            <div key={category.id} className="bg-background rounded-xl p-6 border border-border shadow-sm">
+              <div className="flex items-center mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg mr-3">
+                  <category.icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">{category.title}</h3>
+                <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
               </div>
               
-              <div className="space-y-4">
-                {category.skills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
+              <div className="space-y-3">
+                {category.skills.slice(0, 4).map((skill, index) => (
+                  <div key={index} className="space-y-1">
                     <div className="flex justify-between items-center">
-                      <span className="text-foreground font-medium">{skill.name}</span>
-                      <span className="text-sm text-foreground/60">{skill.level}%</span>
+                      <span className="text-foreground font-medium text-sm">{skill.name}</span>
+                      <span className="text-xs text-foreground/60">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-accent rounded-full h-2">
+                    <div className="w-full bg-accent rounded-full h-1.5">
                       <div
-                        className={`h-2 rounded-full transition-all duration-1000 ease-out ${getLevelColor(skill.level)}`}
+                        className={`h-1.5 rounded-full transition-all duration-1000 ease-out ${getLevelColor(skill.level)}`}
                         style={{ width: `${skill.level}%` }}
                       ></div>
-                    </div>
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-foreground/50">Proficiency Level</span>
-                      <span className={`font-medium ${getLevelColor(skill.level).replace('bg-', 'text-')}`}>
-                        {getLevelText(skill.level)}
-                      </span>
                     </div>
                   </div>
                 ))}
@@ -149,10 +143,10 @@ const Skills = () => {
         <div className="mt-16">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-semibold text-foreground mb-4">
-              Additional Skills & Certifications
+              Additional Skills
             </h3>
             <p className="text-foreground/70">
-              Beyond technical skills, I also bring soft skills and professional certifications to the table.
+              Beyond technical skills, I also bring soft skills and professional expertise to the table.
             </p>
           </div>
 
@@ -180,26 +174,6 @@ const Skills = () => {
                 Passionate about staying updated with the latest technologies and industry best practices.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-semibold text-foreground mb-8">
-            Certifications
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              'AWS Certified Developer',
-              'MongoDB Certified Developer',
-              'React Developer Certification',
-              'Google Cloud Platform',
-            ].map((cert, index) => (
-              <div key={index} className="bg-background p-4 rounded-lg border border-border hover:bg-accent transition-colors duration-200">
-                <div className="text-2xl mb-2">🏆</div>
-                <p className="text-foreground font-medium text-sm">{cert}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

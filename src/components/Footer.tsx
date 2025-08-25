@@ -1,14 +1,15 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Facebook, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/yourusername', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com/yourusername', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:your.email@example.com', label: 'Email' },
+    { icon: Github, href: 'https://github.com/Abdinajib123', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/abdinajib-abdullahi-muse-8b8026357', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/najiib.cadeh', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/cabdicabdulaahi8899', label: 'Instagram' },
+    { icon: Mail, href: 'mailto:cabdicabdulaahi8899@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -17,9 +18,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 items-center">
           {/* Logo and Description */}
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold text-primary mb-2">Your Name</h3>
+            <h3 className="text-xl font-bold text-primary mb-2">Abdinajib Abdullahi</h3>
             <p className="text-foreground/70 text-sm">
-              Full Stack Developer passionate about creating amazing digital experiences.
+              Full-stack Developer, Mobile App Developer, UI/UX & Graphic Designer passionate about creating amazing digital experiences.
             </p>
           </div>
 
@@ -68,7 +69,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-foreground/60 text-sm">
-            © {currentYear} Your Name. All rights reserved. Built with React, TypeScript, and Tailwind CSS.
+            © {currentYear} Abdinajib Abdullahi. All rights reserved. Built with React, TypeScript, and Tailwind CSS.
           </p>
         </div>
       </div>

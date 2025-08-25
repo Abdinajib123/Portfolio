@@ -1,27 +1,16 @@
 import React from 'react';
-import { User, MapPin, Calendar, GraduationCap, Heart } from 'lucide-react';
+import { User, MapPin, Calendar, GraduationCap } from 'lucide-react';
 
 const About = () => {
   const personalInfo = [
-    { icon: User, label: 'Name', value: 'Your Full Name' },
-    { icon: MapPin, label: 'Location', value: 'Your City, Country' },
-    { icon: Calendar, label: 'Birthday', value: 'January 1, 2000' },
+    { icon: User, label: 'Name', value: 'Abdinajib Abdullahi Muse' },
+    { icon: MapPin, label: 'Location', value: 'Mogadishu, Somalia' },
+    { icon: Calendar, label: 'Birthday', value: '2004' },
     { icon: GraduationCap, label: 'Degree', value: 'Bachelor of Computer Science' },
   ];
 
-  const interests = [
-    'Web Development',
-    'Mobile Development',
-    'UI/UX Design',
-    'Machine Learning',
-    'Open Source',
-    'Reading',
-    'Traveling',
-    'Photography',
-  ];
-
   return (
-    <section id="about" className="py-20 bg-accent/5">
+    <section id="about" className="min-h-screen py-20 bg-accent/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -53,24 +42,6 @@ const About = () => {
                 ))}
               </div>
             </div>
-
-            {/* Interests */}
-            <div>
-              <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center">
-                <Heart className="h-6 w-6 text-primary mr-2" />
-                Interests
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
-                {interests.map((interest, index) => (
-                  <div
-                    key={index}
-                    className="p-3 bg-background rounded-lg border border-border text-center hover:bg-accent transition-colors duration-200"
-                  >
-                    <span className="text-foreground font-medium">{interest}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* About Content */}
@@ -95,22 +66,6 @@ const About = () => {
                   projects, or sharing knowledge with the developer community. I'm always eager to learn and 
                   take on new challenges that push my boundaries.
                 </p>
-              </div>
-            </div>
-
-            {/* Key Highlights */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="bg-background p-6 rounded-xl border border-border text-center">
-                <div className="text-3xl font-bold text-primary mb-2">3+</div>
-                <div className="text-foreground/70 text-sm">Years Experience</div>
-              </div>
-              <div className="bg-background p-6 rounded-xl border border-border text-center">
-                <div className="text-3xl font-bold text-primary mb-2">50+</div>
-                <div className="text-foreground/70 text-sm">Projects Completed</div>
-              </div>
-              <div className="bg-background p-6 rounded-xl border border-border text-center">
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <div className="text-foreground/70 text-sm">Client Satisfaction</div>
               </div>
             </div>
           </div>
