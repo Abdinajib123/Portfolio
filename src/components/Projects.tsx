@@ -1,36 +1,68 @@
+import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { ExternalLink, Github, Eye } from 'lucide-react';
+import { projectsAPI } from '../services/api';
+
+interface Project {
+  _id: string | number;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  github: string;
+  live: string;
+  featured?: boolean;
+}
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'Quran App',
-      description: 'A beautiful and interactive React.js application designed to explore and engage with the Quran. Features include audio recitations, chapter navigation, and responsive design.',
-      image: '/images/quran.png',
-      technologies: ['React', 'JavaScript', 'HTML', 'CSS'],
-      github: 'https://github.com/Abdinajib123/QuraanApp.git',
-      live: 'https://quraan-app-one.vercel.app/',
-    },
-    {
-      id: 2,
-      title: 'Coffee App',
-      description: 'A Flutter-based mobile application for coffee shop management and ordering. Features include user authentication, menu management, and order processing.',
-      image: '/images/coffe.jpg',
-      technologies: ['Flutter', 'Dart', 'Firebase', 'Mobile Development'],
-      github: 'https://github.com/Abdinajib123/coffeApp.git',
-      live: 'https://github.com/Abdinajib123/coffeApp.git',
-    },
-    {
-      id: 3,
-      title: 'E-commerce Website',
-      description: 'A full-stack e-commerce platform with modern features including user authentication, product management, shopping cart, and secure payment processing.',
-      image: '/images/image.png',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express.js'],
-      github: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
-      live: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
-    },
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      const response = await projectsAPI.getAll({ limit: 10 });
+      setProjects(response.data.projects);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      // Fallback to static data if API fails
+      setProjects([
+        {
+          _id: 1,
+          title: 'Quran App',
+          description: 'A beautiful and interactive React.js application designed to explore and engage with the Quran. Features include audio recitations, chapter navigation, and responsive design.',
+          image: '/images/quran.png',
+          technologies: ['React', 'JavaScript', 'HTML', 'CSS'],
+          github: 'https://github.com/Abdinajib123/QuraanApp.git',
+          live: 'https://quraan-app-one.vercel.app/',
+        },
+        {
+          _id: 2,
+          title: 'Coffee App',
+          description: 'A Flutter-based mobile application for coffee shop management and ordering. Features include user authentication, menu management, and order processing.',
+          image: '/images/coffe.jpg',
+          technologies: ['Flutter', 'Dart', 'Firebase', 'Mobile Development'],
+          github: 'https://github.com/Abdinajib123/coffeApp.git',
+          live: 'https://github.com/Abdinajib123/coffeApp.git',
+        },
+        {
+          _id: 3,
+          title: 'E-commerce Website',
+          description: 'A full-stack e-commerce platform with modern features including user authentication, product management, shopping cart, and secure payment processing.',
+          image: '/images/image.png',
+          technologies: ['React', 'Node.js', 'MongoDB', 'Express.js'],
+          github: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
+          live: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="projects" className="min-h-screen py-20 bg-background">
@@ -46,7 +78,7 @@ const Projects = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="group bg-accent/5 rounded-xl overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
+            <div key={project._id} className="group bg-accent/5 rounded-xl overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
               <div className="relative overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
                   <img 
