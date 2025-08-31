@@ -50,7 +50,7 @@ const Projects = () => {
         },
         {
           _id: 2,
-          title: 'Coffee Website',
+          title: 'Coffee shop Website',
           description: 'A modern, responsive coffee shop website built with React and TypeScript. Features include online menu browsing, coffee ordering, store locations, and a beautiful user interface showcasing premium coffee products.',
           image: '/images/image.png',
           technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
