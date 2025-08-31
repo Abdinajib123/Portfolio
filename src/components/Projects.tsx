@@ -52,7 +52,7 @@ const Projects = () => {
           _id: 2,
           title: 'Coffee Website',
           description: 'A modern, responsive coffee shop website built with React and TypeScript. Features include online menu browsing, coffee ordering, store locations, and a beautiful user interface showcasing premium coffee products.',
-          image: '/images/coffe.jpg',
+          image: '/images/image.png',
           technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
           github: 'https://github.com/Abdinajib123/Coffee-Website.git',
           live: 'https://coffee-website-lime.vercel.app/',
