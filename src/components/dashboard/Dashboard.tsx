@@ -13,14 +13,36 @@ import {
 import { projectsAPI, skillsAPI } from '../../services/api';
 import toast from 'react-hot-toast';
 
+interface Project {
+  _id: string;
+  title: string;
+  technologies: string[];
+  featured?: boolean;
+  live: string;
+}
+
+interface Stats {
+  projects: number;
+  skills: number;
+  featuredProjects: number;
+  totalViews: number;
+}
+
+interface StatCardProps {
+  title: string;
+  value: number;
+  icon: React.ComponentType<{ className?: string }>;
+  color?: string;
+}
+
 const Dashboard = () => {
-  const [stats, setStats] = useState({
+  const [stats, setStats] = useState<Stats>({
     projects: 0,
     skills: 0,
     featuredProjects: 0,
     totalViews: 0
   });
-  const [recentProjects, setRecentProjects] = useState([]);
+  const [recentProjects, setRecentProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -58,7 +80,7 @@ const Dashboard = () => {
     }
   };
 
-  const StatCard = ({ title, value, icon: Icon, color = 'bg-blue-500' }) => (
+  const StatCard = ({ title, value, icon: Icon, color = 'bg-blue-500' }: StatCardProps) => (
     <div className="bg-background border border-border rounded-lg p-6">
       <div className="flex items-center justify-between">
         <div>

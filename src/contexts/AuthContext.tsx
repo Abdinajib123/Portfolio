@@ -1,9 +1,25 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authAPI } from '../services/api';
 
-const AuthContext = createContext();
+interface User {
+  _id: string;
+  username: string;
+  email: string;
+  role?: string;
+}
 
-export const useAuth = () => {
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  login: (credentials: { username: string; password: string }) => Promise<{ success: boolean; error?: string }>;
+  logout: () => void;
+  updateProfile: (userData: Partial<User>) => Promise<{ success: boolean; error?: string }>;
+  isAuthenticated: boolean;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
@@ -11,8 +27,12 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (credentials) => {
+  const login = async (credentials: { username: string; password: string }) => {
     try {
       const response = await authAPI.login(credentials);
       const { token, user } = response.data;
@@ -45,7 +65,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       
       return { success: true };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         error: error.response?.data?.message || 'Login failed'
@@ -59,13 +79,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const updateProfile = async (userData) => {
+  const updateProfile = async (userData: Partial<User>) => {
     try {
       const response = await authAPI.updateProfile(userData);
       setUser(response.data);
       localStorage.setItem('user', JSON.stringify(response.data));
       return { success: true };
-    } catch (error) {
+    } catch (error: any) {
       return {
         success: false,
         error: error.response?.data?.message || 'Update failed'
@@ -73,7 +93,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const value = {
+  const value: AuthContextType = {
     user,
     loading,
     login,

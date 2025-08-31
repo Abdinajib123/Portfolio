@@ -72,6 +72,19 @@ const Projects = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <section id="projects" className="min-h-screen py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-foreground/70">Loading projects...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section 
       id="projects" 

@@ -18,7 +18,7 @@ import SkillForm from './components/dashboard/SkillForm';
 import SkillsList from './components/dashboard/SkillsList';
 
 // Protected Route Component
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, loading } = useAuth();
   
   if (loading) {
