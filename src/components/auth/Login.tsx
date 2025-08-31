@@ -7,13 +7,13 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface FormData {
-  username: string;
+  email: string;
   password: string;
 }
 
 const Login = () => {
   const [formData, setFormData] = useState<FormData>({
-    username: '',
+    email: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -63,20 +63,20 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
-              Username
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              Email Address
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-foreground/50" />
               <input
-                id="username"
-                name="username"
-                type="text"
+                id="email"
+                name="email"
+                type="email"
                 required
-                value={formData.username}
+                value={formData.email}
                 onChange={handleChange}
                 className="w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="Enter your username"
+                placeholder="Enter your email"
               />
             </div>
           </div>
@@ -118,7 +118,7 @@ const Login = () => {
 
         <div className="text-center">
           <p className="text-sm text-foreground/70">
-            Default credentials: admin / admin123
+            Default credentials: admin@portfolio.com / admin123
           </p>
         </div>
       </div>

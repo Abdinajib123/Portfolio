@@ -12,9 +12,9 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (credentials: { username: string; password: string }) => Promise<{ success: boolean; error?: string }>;
+  login: (credentials: { email: string; password: string }) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
-  updateProfile: (userData: Partial<User>) => Promise<{ success: boolean; error?: string }>;
+  updateProfile: (userData: { username: string; email: string }) => Promise<{ success: boolean; error?: string }>;
   isAuthenticated: boolean;
 }
 
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const login = async (credentials: { username: string; password: string }) => {
+  const login = async (credentials: { email: string; password: string }) => {
     try {
       const response = await authAPI.login(credentials);
       const { token, user } = response.data;
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null);
   };
 
-  const updateProfile = async (userData: Partial<User>) => {
+  const updateProfile = async (userData: { username: string; email: string }) => {
     try {
       const response = await authAPI.updateProfile(userData);
       setUser(response.data);
