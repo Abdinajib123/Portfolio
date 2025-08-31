@@ -1,86 +1,125 @@
+import { useState, useEffect } from 'react';
 import { Code, Database, Palette, Server, Smartphone, Globe } from 'lucide-react';
+import { skillsAPI } from '../services/api';
+
+interface Skill {
+  _id: string;
+  name: string;
+  category: string;
+  level: number;
+  icon?: string;
+}
+
+interface SkillCategory {
+  id: string;
+  title: string;
+  icon: any;
+  skills: Skill[];
+}
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      id: 1,
-      title: 'Frontend Development',
-      icon: Code,
-      skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'JavaScript', level: 90 },
-        { name: 'HTML/CSS', level: 95 },
-        { name: 'Tailwind CSS', level: 88 },
-        { name: 'Next.js', level: 80 },
-      ],
-    },
-    {
-      id: 2,
-      title: 'Backend Development',
-      icon: Server,
-      skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Express.js', level: 80 },
-        { name: 'Python', level: 75 },
-        { name: 'Java', level: 70 },
-        { name: 'REST APIs', level: 90 },
-        { name: 'GraphQL', level: 75 },
-      ],
-    },
-    {
-      id: 3,
-      title: 'Database & Cloud',
-      icon: Database,
-      skills: [
-        { name: 'MongoDB', level: 85 },
-        { name: 'PostgreSQL', level: 80 },
-        { name: 'Firebase', level: 85 },
-        { name: 'SQL', level: 70 },
-        { name: 'Docker', level: 75 },
-        { name: 'Redis', level: 70 },
-      ],
-    },
-    {
-      id: 4,
-      title: 'UI/UX Design',
-      icon: Palette,
-      skills: [
-        { name: 'Figma', level: 80 },
-        { name: 'Adobe XD', level: 75 },
-        { name: 'Photoshop', level: 70 },
-        { name: 'Illustrator', level: 65 },
-        { name: 'Prototyping', level: 85 },
-        { name: 'User Research', level: 75 },
-      ],
-    },
-    {
-      id: 5,
-      title: 'Mobile Development',
-      icon: Smartphone,
-      skills: [
-        { name: 'React Native', level: 80 },
-        { name: 'Flutter', level: 70 },
-        { name: 'iOS Development', level: 65 },
-        { name: 'Android Development', level: 70 },
-        { name: 'Mobile UI/UX', level: 75 },
-        { name: 'App Store Deployment', level: 80 },
-      ],
-    },
-    {
-      id: 6,
-      title: 'Other Tools',
-      icon: Globe,
-      skills: [
-        { name: 'Git/GitHub', level: 90 },
-        { name: 'VS Code', level: 95 },
-        { name: 'Webpack', level: 75 },
-        { name: 'Jest', level: 80 },
-        { name: 'CI/CD', level: 75 },
-        { name: 'Agile/Scrum', level: 85 },
-      ],
-    },
-  ];
+  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    fetchSkills();
+    
+    // Check if we're coming from admin dashboard (hash in URL)
+    if (window.location.hash === '#skills') {
+      setIsHighlighted(true);
+      // Remove highlight after 3 seconds
+      setTimeout(() => setIsHighlighted(false), 3000);
+    }
+  }, []);
+
+  const fetchSkills = async () => {
+    try {
+      setLoading(true);
+      const response = await skillsAPI.getAll();
+      const skills = response.data.skills || [];
+      
+      // Group skills by category
+      const groupedSkills = skills.reduce((acc: any, skill: Skill) => {
+        const category = skill.category || 'Other';
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push(skill);
+        return acc;
+      }, {});
+
+      // Map categories to icons
+      const categoryIcons: { [key: string]: any } = {
+        'Frontend Development': Code,
+        'Backend Development': Server,
+        'Database & Cloud': Database,
+        'UI/UX Design': Palette,
+        'Mobile Development': Smartphone,
+        'Other Tools': Globe,
+      };
+
+      const categories = Object.entries(groupedSkills).map(([category, skills]: [string, any], index) => ({
+        id: index.toString(),
+        title: category,
+        icon: categoryIcons[category] || Globe,
+        skills: skills,
+      }));
+
+      setSkillCategories(categories);
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+      // Fallback to static data if API fails
+      setSkillCategories([
+        {
+          id: '1',
+          title: 'Frontend Development',
+          icon: Code,
+          skills: [
+            { _id: '1', name: 'React', level: 90, category: 'Frontend Development' },
+            { _id: '2', name: 'TypeScript', level: 85, category: 'Frontend Development' },
+            { _id: '3', name: 'JavaScript', level: 90, category: 'Frontend Development' },
+            { _id: '4', name: 'HTML/CSS', level: 95, category: 'Frontend Development' },
+          ],
+        },
+        {
+          id: '2',
+          title: 'Backend Development',
+          icon: Server,
+          skills: [
+            { _id: '5', name: 'Node.js', level: 85, category: 'Backend Development' },
+            { _id: '6', name: 'Express.js', level: 80, category: 'Backend Development' },
+            { _id: '7', name: 'Python', level: 75, category: 'Backend Development' },
+            { _id: '8', name: 'REST APIs', level: 90, category: 'Backend Development' },
+          ],
+        },
+        {
+          id: '3',
+          title: 'Database & Cloud',
+          icon: Database,
+          skills: [
+            { _id: '9', name: 'MongoDB', level: 85, category: 'Database & Cloud' },
+            { _id: '10', name: 'PostgreSQL', level: 80, category: 'Database & Cloud' },
+            { _id: '11', name: 'Firebase', level: 85, category: 'Database & Cloud' },
+            { _id: '12', name: 'Docker', level: 75, category: 'Database & Cloud' },
+          ],
+        },
+        {
+          id: '4',
+          title: 'Other Tools',
+          icon: Globe,
+          skills: [
+            { _id: '13', name: 'Git/GitHub', level: 90, category: 'Other Tools' },
+            { _id: '14', name: 'VS Code', level: 95, category: 'Other Tools' },
+            { _id: '15', name: 'Jest', level: 80, category: 'Other Tools' },
+            { _id: '16', name: 'CI/CD', level: 75, category: 'Other Tools' },
+          ],
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getLevelColor = (level: number) => {
     if (level >= 90) return 'bg-green-500';
@@ -89,12 +128,35 @@ const Skills = () => {
     return 'bg-gray-500';
   };
 
+  if (loading) {
+    return (
+      <section id="skills" className="min-h-screen py-20 bg-accent/5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-foreground/70">Loading skills...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section id="skills" className="min-h-screen py-20 bg-accent/5">
+    <section 
+      id="skills" 
+      className={`min-h-screen py-20 bg-accent/5 transition-all duration-1000 ${
+        isHighlighted ? 'ring-4 ring-primary/20 bg-primary/10' : ''
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Skills & Technologies
+            {isHighlighted && (
+              <span className="ml-2 text-sm text-primary animate-pulse">
+                ✨ Just Updated!
+              </span>
+            )}
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
             Here's an overview of my technical skills and the technologies I work with on a daily basis.
@@ -113,7 +175,7 @@ const Skills = () => {
               
               <div className="space-y-3">
                 {category.skills.slice(0, 4).map((skill, index) => (
-                  <div key={index} className="space-y-1">
+                  <div key={skill._id || index} className="space-y-1">
                     <div className="flex justify-between items-center">
                       <span className="text-foreground font-medium text-sm">{skill.name}</span>
                       <span className="text-xs text-foreground/60">{skill.level}%</span>

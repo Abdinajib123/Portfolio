@@ -17,9 +17,17 @@ interface Project {
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
   useEffect(() => {
     fetchProjects();
+    
+    // Check if we're coming from admin dashboard (hash in URL)
+    if (window.location.hash === '#projects') {
+      setIsHighlighted(true);
+      // Remove highlight after 3 seconds
+      setTimeout(() => setIsHighlighted(false), 3000);
+    }
   }, []);
 
   const fetchProjects = async () => {
@@ -42,18 +50,18 @@ const Projects = () => {
         },
         {
           _id: 2,
-          title: 'Coffee App',
-          description: 'A Flutter-based mobile application for coffee shop management and ordering. Features include user authentication, menu management, and order processing.',
+          title: 'Coffee Website',
+          description: 'A modern, responsive coffee shop website built with React and TypeScript. Features include online menu browsing, coffee ordering, store locations, and a beautiful user interface showcasing premium coffee products.',
           image: '/images/coffe.jpg',
-          technologies: ['Flutter', 'Dart', 'Firebase', 'Mobile Development'],
-          github: 'https://github.com/Abdinajib123/coffeApp.git',
-          live: 'https://github.com/Abdinajib123/coffeApp.git',
+          technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+          github: 'https://github.com/Abdinajib123/Coffee-Website.git',
+          live: 'https://coffee-website-lime.vercel.app/',
         },
         {
           _id: 3,
           title: 'E-commerce Website',
           description: 'A full-stack e-commerce platform with modern features including user authentication, product management, shopping cart, and secure payment processing.',
-          image: '/images/image.png',
+          image: '/images/3.png',
           technologies: ['React', 'Node.js', 'MongoDB', 'Express.js'],
           github: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
           live: 'https://github.com/e-commerce-system-full-stuck/e-commerce-client.git',
@@ -65,11 +73,21 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="min-h-screen py-20 bg-background">
+    <section 
+      id="projects" 
+      className={`min-h-screen py-20 bg-background transition-all duration-1000 ${
+        isHighlighted ? 'ring-4 ring-primary/20 bg-primary/5' : ''
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             My Projects
+            {isHighlighted && (
+              <span className="ml-2 text-sm text-primary animate-pulse">
+                ✨ Just Updated!
+              </span>
+            )}
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
             Here are some of the projects I've worked on. Each one represents a unique challenge and learning experience.
