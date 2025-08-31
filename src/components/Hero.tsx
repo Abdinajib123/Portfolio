@@ -3,15 +3,24 @@ import { Download, Mail, Linkedin, Facebook, Instagram } from 'lucide-react';
 
 const Hero = () => {
   const handleDownloadResume = () => {
-    // Create a link element
-    const link = document.createElement('a');
-    link.href = '/cv.pdf'; // Path to your CV file in the public folder
-    link.download = 'Abdinajib_Abdullahi_CV.pdf'; // Name for the downloaded file
-    
-    // Append to body, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      // Create a link element
+      const link = document.createElement('a');
+      link.href = '/cv.pdf'; // Path to your CV file in the public folder
+      link.download = 'Abdinajib_Abdullahi_CV.pdf'; // Name for the downloaded file
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Optional: Show success message (you can add a toast notification here)
+      console.log('Resume download started successfully');
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Optional: Show error message to user
+      alert('Failed to download resume. Please try again.');
+    }
   };
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-[#0A192F] text-white py-20">

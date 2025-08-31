@@ -50,7 +50,7 @@ const Projects = () => {
         },
         {
           _id: 2,
-          title: 'Coffee shop gWebsite',
+          title: 'Casri',
           description: 'A modern, responsive coffee shop website built with React and TypeScript. Features include online menu browsing, coffee ordering, store locations, and a beautiful user interface showcasing premium coffee products.',
           image: '/images/image.png',
           technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
@@ -58,6 +58,8 @@ const Projects = () => {
           live: 'https://coffee-website-lime.vercel.app/',
         },
         {
+
+          
           _id: 3,
           title: 'E-commerce Website',
           description: 'A full-stack e-commerce platform with modern features including user authentication, product management, shopping cart, and secure payment processing.',
