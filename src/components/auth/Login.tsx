@@ -1,4 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../ui/button';
@@ -6,13 +7,13 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface FormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 const Login = () => {
   const [formData, setFormData] = useState<FormData>({
-    email: '',
+    username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -62,20 +63,20 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-              Email Address
+            <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
+              Username
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-foreground/50" />
               <input
-                id="email"
-                name="email"
-                type="email"
+                id="username"
+                name="username"
+                type="text"
                 required
-                value={formData.email}
+                value={formData.username}
                 onChange={handleChange}
                 className="w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground placeholder-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="Enter your email"
+                placeholder="Enter your username"
               />
             </div>
           </div>
@@ -117,7 +118,7 @@ const Login = () => {
 
         <div className="text-center">
           <p className="text-sm text-foreground/70">
-            Default credentials: admin@portfolio.com / admin123
+            Default credentials: admin / admin123
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../ui/button';
@@ -6,7 +7,6 @@ import {
   LayoutDashboard, 
   FolderOpen, 
   Code, 
-  Settings, 
   LogOut, 
   Menu, 
   X,

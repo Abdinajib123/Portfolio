@@ -62,7 +62,7 @@ const Dashboard = () => {
       const skills = skillsResponse.data.skills;
       
       // Calculate stats
-      const featuredProjects = projects.filter(p => p.featured).length;
+      const featuredProjects = projects.filter((p: any) => p.featured).length;
       
       setStats({
         projects: projectsResponse.data.pagination.total,
