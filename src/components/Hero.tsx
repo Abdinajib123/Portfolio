@@ -7,7 +7,6 @@ const Hero = () => {
     const link = document.createElement('a');
     link.href = '/cv.pdf'; // Path to your CV file in the public folder
     link.download = 'Abdinajib_Abdullahi_CV.pdf'; // Name for the downloaded file
-    link.target = '_blank';
     
     // Append to body, click, and remove
     document.body.appendChild(link);
