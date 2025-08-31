@@ -2,6 +2,18 @@ import { Button } from './ui/button';
 import { Download, Mail, Linkedin, Facebook, Instagram } from 'lucide-react';
 
 const Hero = () => {
+  const handleDownloadResume = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = '/cv.pdf'; // Path to your CV file in the public folder
+    link.download = 'Abdinajib_Abdullahi_CV.pdf'; // Name for the downloaded file
+    link.target = '_blank';
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-[#0A192F] text-white py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +52,10 @@ const Hero = () => {
               Passionate about creating innovative digital solutions that combine cutting-edge technology with exceptional user experiences. With expertise in full-stack development, mobile applications, and creative design, I bring ideas to life through code and creativity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start">
-              <Button className="px-6 py-3 text-lg bg-blue-600 hover:bg-blue-700 text-white">
+              <Button 
+                onClick={handleDownloadResume}
+                className="px-6 py-3 text-lg bg-blue-600 hover:bg-blue-700 text-white"
+              >
                 <Download className="mr-2 h-5 w-5" /> Download Resume
               </Button>
               <Button variant="outline" className="px-6 py-3 text-lg border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
