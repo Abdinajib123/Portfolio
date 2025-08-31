@@ -5,8 +5,8 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link element
     const link = document.createElement('a');
-    link.href = '/cv.txt'; // Path to your CV file in the public folder
-    link.download = 'Abdinajib_Abdullahi_CV.txt'; // Name for the downloaded file
+    link.href = '/cv.pdf'; // Path to your CV file in the public folder
+    link.download = 'Abdinajib_Abdullahi_CV.pdf'; // Name for the downloaded file
     
     // Append to body, click, and remove
     document.body.appendChild(link);
