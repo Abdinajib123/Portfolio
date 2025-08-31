@@ -1,0 +1,42 @@
+ABDINAJIB ABDULLAHI MUSE
+Full-Stack Developer | Mobile App Developer | UI/UX & Graphic Designer
+
+CONTACT INFORMATION
+Email: abdinajib@example.com
+Phone: +61 211 2932
+LinkedIn: https://www.linkedin.com/in/abdinajib-abdullahi-muse-8b8026357
+GitHub: https://github.com/Abdinajib123
+
+PROFESSIONAL SUMMARY
+Passionate about creating innovative digital solutions that combine cutting-edge technology with exceptional user experiences. With expertise in full-stack development, mobile applications, and creative design, I bring ideas to life through code and creativity.
+
+TECHNICAL SKILLS
+• Frontend: React, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
+• Backend: Node.js, Express.js, MongoDB, RESTful APIs
+• Mobile: React Native, Flutter
+• Design: UI/UX Design, Graphic Design, Figma, Adobe Creative Suite
+• Tools: Git, Vite, Webpack, VS Code
+
+PROJECTS
+1. Coffee Website
+   - A modern, responsive coffee shop website built with React and TypeScript
+   - Features include online menu browsing, coffee ordering, store locations
+   - Technologies: React, TypeScript, Tailwind CSS, Vite
+   - Live Demo: https://coffee-website-lime.vercel.app/
+   - GitHub: https://github.com/Abdinajib123/Coffee-Website.git
+
+2. Portfolio Website
+   - Personal portfolio showcasing projects and skills
+   - Admin dashboard for content management
+   - Technologies: React, TypeScript, Node.js, MongoDB
+   - Live Demo: https://portfolio-rose-iota-46.vercel.app/
+
+EDUCATION
+• Bachelor's Degree in Computer Science (or relevant field)
+• Certifications in Web Development and UI/UX Design
+
+LANGUAGES
+• English (Fluent)
+• Somali (Native)
+
+NOTE: This is a placeholder CV. Please replace this file with your actual CV in PDF format named 'cv.pdf' for the download functionality to work properly.
